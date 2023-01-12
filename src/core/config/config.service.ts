@@ -8,6 +8,11 @@ import * as Joi from "joi";
 import { EnvConfig } from "../types/env-config.type";
 import { Constant } from "../../utils/contants/contants.class";
 
+/**
+ * Servicio para manejar la configuracion de las variables de entorno
+ * @author Leonardo Castillo - yorchcastillo4@gmail.com
+ * @copyright 2023
+ */
 @Injectable()
 export class ConfigService {
 
@@ -19,7 +24,7 @@ export class ConfigService {
      */
     constructor(@Inject(Constant.OPTIONS_CONFIG) private options) {
         const filePath = `${process.env.NODE_ENV || 'development'}.env`;
-        const envFile = path.resolve(__dirname, '../../', options.folder, filePath);
+        const envFile = path.resolve(options.folder, filePath);
         this.envConfig = dotenv.parse(fs.readFileSync(envFile));
         this.validation(this.envConfig);
     }

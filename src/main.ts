@@ -32,14 +32,14 @@ async function bootstrap() {
 
   const config = app.get(ConfigService);
   const document = new DocumentBuilder()
-      .setTitle("SmartSoft documentación")
-      .setDescription("Api for technical test with SmartSoft")
+      .setTitle("Store documentación")
+      .setDescription("Api for technical test with Store App")
       .setVersion("1.0")
-      .addTag("SmartSoft")
+      .addTag("Store App")
       .build();
 
   const swager = SwaggerModule.createDocument(app, document);
-  SwaggerModule.setup('Api store', app, swager);
+  SwaggerModule.setup('api-doc', app, swager);
 
   loadGlobal(config);
 

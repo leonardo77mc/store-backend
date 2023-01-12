@@ -1,28 +1,35 @@
-import { Entity, Column, ManyToOne } from "typeorm";
+import { Entity, Column, ManyToOne, OneToMany } from "typeorm";
 import { BaseEnty } from "../../../core/base/base.entity";
 
-import { Getters, Setters} from 'node-lombok';
 import { Quotes } from "./quotes.entity";
+import { Purchases } from "./purchases.entity";
 
-@Getters() @Setters()
+/**
+ * Entidad del usuario.
+ * @author Leonardo Castillo - yorchcastillo4@gmail.com
+ * @copyright 2023
+ */
 @Entity()
 export class User extends BaseEnty {
 
-    @Column({type: 'varchar'})
-    private name: string;
+    @Column()
+    public name: string;
 
-    @Column({type: 'varchar', name: 'last_names'})
-    private lastNames: string;
+    @Column({name: 'last_names'})
+    public lastNames: string;
 
-    @Column({type: 'int', name: 'identification_card'})
-    private identificationCard: number;
+    @Column({name: 'identification_card'})
+    public identificationCard: number;
 
-    @Column({type: 'varchar'})
-    private email: string;
+    @Column()
+    public email: string;
 
-    @Column({type: 'int'})
-    private telephone: number;
+    @Column()
+    public telephone: string;
 
     @ManyToOne(() => Quotes, (quotes) => quotes.user)
-    quotes: Quotes;
+    public quotes: Quotes;
+
+    @OneToMany(() => Purchases, (purchases) => purchases.user)
+    purchases: Purchases[];
 }

@@ -1,21 +1,27 @@
-import { Entity, Column } from "typeorm";
+import { Entity, Column, ManyToOne } from "typeorm";
 import { BaseEnty } from "../../../core/base/base.entity";
+import { Purchases } from "../../user/entity/purchases.entity";
 
-import { Getters, Setters} from 'node-lombok';
-
-@Getters() @Setters()
+/**
+ * Entidad del producto.
+ * @author Leonardo Castillo - yorchcastillo4@gmail.com
+ * @copyright 2023
+ */
 @Entity()
 export class Product extends BaseEnty {
 
-    @Column({type: 'varchar'})
-    private title: string;
+    @Column()
+    public title: string;
 
-    @Column({type: 'varchar'})
-    private description: string;
+    @Column()
+    public description: string;
 
-    @Column({type: 'int'})
-    private price: number;
+    @Column()
+    public price: number;
 
-    @Column({type: 'int'})
-    private stock: number;
+    @Column()
+    public stock: number;
+
+    @Column({name: 'url_photo'})
+    public urlPhoto: string;
 }
